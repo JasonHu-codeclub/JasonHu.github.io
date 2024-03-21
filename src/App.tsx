@@ -19,7 +19,7 @@ const App = () => {
           <Route path="posts" element={<Outlet />}>
             <Route
               path=""
-              element={<Articles  />}
+              element={<Articles />}
             />
             <Route path=":id" element={<Article />} />
           </Route>
