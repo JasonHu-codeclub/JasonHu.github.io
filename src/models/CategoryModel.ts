@@ -1,4 +1,4 @@
-import { Milestone } from "../services/github";
+import { Milestone } from "../services/githubService.ts";
 
 export default class CategoryModel {
   private constructor(

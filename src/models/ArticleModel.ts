@@ -1,4 +1,4 @@
-import { Issue } from '../services/github';
+import { Issue } from '../services/githubService.ts';
 import LabelModel from './LabelModel';
 
 export default class ArticleModel {

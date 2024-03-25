@@ -1,4 +1,4 @@
-import { Label } from '../services/github';
+import { Label } from '../services/githubService.ts';
 
 export default class LabelModel {
   private constructor(
