@@ -1,1 +1,0 @@
-import { Milestone } from "../services/github";
