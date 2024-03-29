@@ -19,7 +19,7 @@ export default function ArticleItem(props:ArticleItemProps) {
 
     const {article,getLink,getLabelLink} = props;
     const {t} = useTranslation();
-    const createdAt = useMemo(() => format(new Date(article.createdAt),t('dateFormat')),[article])
+    const createdAt = useMemo(() => format(new Date(article.createdAt),t('dateFormat')),[article]);
     return (
         <Wrapper>
             <Row>
