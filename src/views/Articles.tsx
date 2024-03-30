@@ -38,7 +38,7 @@ export default function Articles(props:ArticlesProps) {
     const { t } = useTranslation();
     const [category, setCategory] = useState<CategoryModel>(); // State is of type CategoryModel or undefined(no initial value )
     const [articles, setArticles] = useState<ArticleModel[]>([]);
-    // const total = category?.articles ?? 0;//文章总数，如果category为null或者undefined，则直接赋值0
+    const total = category?.articles ?? 0;//文章总数，如果category为null或者undefined，则直接赋值0
     const navigate = useNavigate();
     const title = useMemo(() => {
         return category ? t(`tab.${category.title.toLowerCase()}`) : "";
@@ -72,6 +72,10 @@ export default function Articles(props:ArticlesProps) {
         setLoadingArticles();
     }, [props.milestone, query]);
 
+    const onPageChange = useCallback((page:number) => {
+        navigate(createQueryURL({page,labels:query.label}))
+    },
+    [query.label,props.milestone])
 
     return (
         <Wrapper>
@@ -90,7 +94,12 @@ export default function Articles(props:ArticlesProps) {
                 ))}
             </List>
             <Foot>
-                <Pagination />
+                <Pagination
+                    page={query.page}
+                    pageSize={query.pageSize}
+                    total={total}
+                    onChange={onPageChange}
+                />
             </Foot>
         </Wrapper>
     );
