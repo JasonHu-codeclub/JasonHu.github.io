@@ -6,7 +6,7 @@ import Pagination from "../components/Pagination";
 import CategoryModel from "../models/CategoryModel";
 import ArticleModel from "../models/ArticleModel";
 import ArticleItem from "../components/ArticleItem";
-import ArticleSkeleton from '../components/ArticleSelecton.tsx';
+import ArticleSkeleton from '../components/ArticleSkeleton.tsx';
 import { useTranslation } from "react-i18next";
 import useHandling from "../hooks/useHandling";
 import githubService from '../services/githubService'
@@ -49,11 +49,13 @@ export default function Articles(props:ArticlesProps) {
     const getLabelLink = useCallback((labels:string) => {
         return createQueryURL({labels,page:1})
     },[])
+
     const [loadingArticles,setLoadingArticles] = useHandling(
         useCallback(async () =>  {
+
             if(category?.number !== props.milestone){
                 const milestones = await githubService.listMilestones();
-                console.log('输出milestone:',milestones);
+                console.log('输出milestones:',milestones);
                 const milestone = milestones.find(m=>m.number === props.milestone);
                 if(!milestone){
                     navigate('/404')
@@ -76,6 +78,9 @@ export default function Articles(props:ArticlesProps) {
         navigate(createQueryURL({page,labels:query.label}))
     },
     [query.label,props.milestone])
+    console.log("输出category:",category);
+    console.log("输出atricles:",articles);
+    console.log("输出total:",total);
 
     return (
         <Wrapper>

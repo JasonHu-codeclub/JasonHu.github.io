@@ -52,7 +52,15 @@ export default function Pagination(props:PaginationProps) {
     if (hasNext) onChange?.(page + 1);
   }, [page, hasNext, onChange]);
 
-  if (totalPages <= 0) return null;
+    console.log("输出pages数组：",pages);
+    console.log("输出total：",total);
+    console.log("输出当前page：",page);
+    console.log("输出当前pageSize：",pageSize);
+
+  if (totalPages <= 0) {
+      console.log("totalpages为空")
+      return null;
+  }
   return (
       <List>
         {/*向前一页*/}

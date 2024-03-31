@@ -19,14 +19,14 @@ const App = () => {
           <Route path="posts" element={<Outlet />}>
             <Route
               path=""
-              element={<Articles />}
+              element={<Articles milestone={milestones.posts}/>}
             />
             <Route path=":id" element={<Article />} />
           </Route>
           <Route path="snippets" element={<Outlet />}>
             <Route
               path=""
-              element={<Articles />}
+              element={<Articles milestone={milestones.snippets}/>}
             />
             <Route path=":id" element={<Article />} />
           </Route>
