@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import tw from "twin.macro";
 import styled from "@emotion/styled";
@@ -8,9 +8,9 @@ import IconProjects from "~icons/ri/function-line";
 import IconGithub from "~icons/ri/github-line";
 import IconLanguage from "~icons/ri/global-line";
 import IconEmail from "~icons/ri/mail-line";
-import IconDark from "~icons/ri/moon-line";
+// import IconDark from "~icons/ri/moon-line";
 import IconSnippets from "~icons/ri/sticky-note-line";
-import IconLight from "~icons/ri/sun-line";
+// import IconLight from "~icons/ri/sun-line";
 
 const Wrapper = styled.div`
   ${tw` min-h-screen flex flex-col`}
@@ -52,6 +52,10 @@ export default function Main() {
               <IconProjects tw="inline lg:hidden" />
               <span tw="hidden lg:inline">Projects</span>
             </NavLinkItem>
+            <NavLinkItem to="/gallery">
+              <IconProjects tw="inline lg:hidden" />
+              <span tw="hidden lg:inline">Gallery</span>
+            </NavLinkItem>
             
             <Divider />
             
@@ -68,11 +72,13 @@ export default function Main() {
           </Nav>
         </HeaderCenter>
       </Header>
+
       <Outlet />
+
       <Footer>
         <FooterCenter>
           <a
-            tw="hover:text-blue-500"
+              tw="hover:text-blue-500"
             href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
           >
             CC BY-NC-SA 4.0

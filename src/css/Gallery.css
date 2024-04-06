@@ -1,0 +1,41 @@
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Adjust this to handle responsiveness */
+    grid-gap: 10px;
+}
+
+.image-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.image-detail {
+    display: flex;
+    justify-content: space-between;
+}
+
+.image-detail img {
+    max-width: 70%; /* Adjust the image width as needed */
+}
+
+.image-metadata,
+.image-comments {
+    width: 30%; /* Adjust the width for metadata and comments */
+}
+
+/* Add media queries to handle responsiveness */
+@media (max-width: 768px) {
+    .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .image-detail img {
+        max-width: 100%;
+    }
+
+    .image-metadata,
+    .image-comments {
+        width: 100%;
+    }
+}
