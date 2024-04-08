@@ -23,7 +23,7 @@ export type ArticlesProps = {
 }
 
 function useArticlesQuery(){
-    const {labels,page} = useQuery();
+    const {labels,page} = useQuery();//注意：如果是从Home进入posts页面，labels和page这些参数都是不存在的，所以才有下面的判断labels??undefined;  page ?? '1';。只有点击文章下面的标签时，才会收集到labels和page
     return useMemo(
         ()=>({
             label:labels??undefined,
@@ -36,14 +36,17 @@ function useArticlesQuery(){
 
 export default function Articles(props:ArticlesProps) {
     const { t } = useTranslation();
+
     const [category, setCategory] = useState<CategoryModel>(); // State is of type CategoryModel or undefined(no initial value )
     const [articles, setArticles] = useState<ArticleModel[]>([]);
+
     const total = category?.articles ?? 0;//文章总数，如果category为null或者undefined，则直接赋值0
+
     const navigate = useNavigate();
     const title = useMemo(() => {
         return category ? t(`tab.${category.title.toLowerCase()}`) : "";
     }, [category]);
-    const query = useArticlesQuery();
+    const query = useArticlesQuery();//使用收集到的query
     const location = useLocation();
     const getArticleLink = useCallback((id:number) =>`${location.pathname}/${id}`,[location]);
     const getLabelLink = useCallback((labels:string) => {
@@ -55,7 +58,6 @@ export default function Articles(props:ArticlesProps) {
 
             if(category?.number !== props.milestone){
                 const milestones = await githubService.listMilestones();
-                console.log('输出milestones:',milestones);
                 const milestone = milestones.find(m=>m.number === props.milestone);
                 if(!milestone){
                     navigate('/404')
@@ -68,7 +70,7 @@ export default function Articles(props:ArticlesProps) {
                 ...query,
             })
             setArticles(list.map(ArticleModel.from));
-        },[props.milestone,query]),
+        },[props.milestone,query]),false
     )
     useEffect(() => {
         setLoadingArticles();
@@ -78,9 +80,7 @@ export default function Articles(props:ArticlesProps) {
         navigate(createQueryURL({page,labels:query.label}))
     },
     [query.label,props.milestone])
-    console.log("输出category:",category);
-    console.log("输出atricles:",articles);
-    console.log("输出total:",total);
+
 
     return (
         <Wrapper>
