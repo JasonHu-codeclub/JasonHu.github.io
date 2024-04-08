@@ -52,6 +52,10 @@ export default function Main() {
               <IconProjects tw="inline lg:hidden" />
               <span tw="hidden lg:inline">Projects</span>
             </NavLinkItem>
+            <NavLinkItem to="/gallery">
+              {/*<Icon？？？ tw="inline lg:hidden" />  暂时未设置相册图标*/}
+              <span tw="hidden lg:inline">Gallery</span>
+            </NavLinkItem>
             
             <Divider />
             
@@ -68,7 +72,9 @@ export default function Main() {
           </Nav>
         </HeaderCenter>
       </Header>
+
       <Outlet />
+
       <Footer>
         <FooterCenter>
           <a
