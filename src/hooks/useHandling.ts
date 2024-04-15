@@ -2,7 +2,7 @@ import { AnyFunction } from "../utils";
 import {useState} from 'react';
 export default function useHandling<T extends AnyFunction>(
     handler:T,
-    initialValue:false,
+    initialValue = false,
 ){
     const [handling,setHandling] = useState<boolean>(initialValue);
 

@@ -45,6 +45,7 @@ export default function Articles(props:ArticlesProps) {
     const navigate = useNavigate();
     const title = useMemo(() => {
         return category ? t(`tab.${category.title.toLowerCase()}`) : "";
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [category]);
     const query = useArticlesQuery();//使用收集到的query
     const location = useLocation();
@@ -70,15 +71,18 @@ export default function Articles(props:ArticlesProps) {
                 ...query,
             })
             setArticles(list.map(ArticleModel.from));
+            // eslint-disable-next-line react-hooks/exhaustive-deps
         },[props.milestone,query]),false
     )
     useEffect(() => {
         setLoadingArticles();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.milestone, query]);
 
     const onPageChange = useCallback((page:number) => {
         navigate(createQueryURL({page,labels:query.label}))
     },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     [query.label,props.milestone])
 
 

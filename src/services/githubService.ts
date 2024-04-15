@@ -66,6 +66,25 @@ export type ListIssuesOptions = {
   pageSize?: number;
 };
 
+export type Comment = {
+  id: number;
+  body: string;
+  html_url: string;
+  author_association: string;
+  created_at: string;
+  updated_at: string;
+  user: User;
+}
+
+export type ListCommentsOptions = {
+  issue: number;
+  sort?: Sort;
+  direction?: Direction;
+  page?: number;
+  pageSize?: number;
+};
+
+
 function toQuery(raw: Record<string,unknown>){
   const params = new URLSearchParams(); 
   Object.keys(raw).forEach((key)=>{
@@ -133,6 +152,11 @@ class GithubService {
     return this.request('GET', `/repos/${this.owner}/${this.repo}/issues/${issue}`);
   }
 
+  public listComments(options:ListCommentsOptions):Promise<Comment[]>{
+    const {issue,sort,direction,page,pageSize} = options;
+    const query = {sort,direction,page,per_page:pageSize};
+    return this.request('GET',`/repos/${this.owner}/${this.repo}/issues/${issue}/comments`,query)
+  }
 
 }
 export default new GithubService(

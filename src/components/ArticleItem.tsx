@@ -7,7 +7,7 @@ import LabelItem from "./LabelItem.tsx";
 import {useTranslation} from "react-i18next";
 import {format} from "date-fns";
 const Wrapper = tw.div`flex flex-col justify-center h-20 border-t border-dotted border-gray-300`
-const Row = tw.div`flex`;
+const Row = tw.div`flex items-center`;
 const Left = tw.div`hidden lg:block w-36 text-sm text-slate-400 text-right`;
 const Right = tw.div`ml-4 flex-1 min-w-0 truncate`;
 export type ArticleItemProps={
